@@ -122,10 +122,10 @@ module RedisMasterSlave
     send_to_slave :zrangebylex
     send_to_slave :zrangebyscore
     send_to_slave :zrank
-    send_to_slave :zrevrank
     send_to_slave :zrevrange
     send_to_slave :zrevrangebylex
     send_to_slave :zrevrangebyscore
+    send_to_slave :zrevrank
     send_to_slave :zscan
     send_to_slave :zscore
 
