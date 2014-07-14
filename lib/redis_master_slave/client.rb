@@ -80,6 +80,8 @@ module RedisMasterSlave
       end
     end
 
+    send_to_slave :bitcount
+    send_to_slave :bitpos
     send_to_slave :dbsize
     send_to_slave :exists
     send_to_slave :get
@@ -91,30 +93,40 @@ module RedisMasterSlave
     send_to_slave :hkeys
     send_to_slave :hlen
     send_to_slave :hmget
+    send_to_slave :hscan
     send_to_slave :hvals
     send_to_slave :keys
     send_to_slave :lindex
     send_to_slave :llen
     send_to_slave :lrange
     send_to_slave :mget
+    send_to_slave :pttl
     send_to_slave :randomkey
+    send_to_slave :scan
     send_to_slave :scard
     send_to_slave :sdiff
     send_to_slave :sinter
     send_to_slave :sismember
     send_to_slave :smembers
-    send_to_slave :sort
     send_to_slave :srandmember
+    send_to_slave :sscan
     send_to_slave :strlen
+    send_to_slave :substr
     send_to_slave :sunion
     send_to_slave :ttl
     send_to_slave :type
     send_to_slave :zcard
     send_to_slave :zcount
+    send_to_slave :zlexcount
     send_to_slave :zrange
+    send_to_slave :zrangebylex
     send_to_slave :zrangebyscore
     send_to_slave :zrank
+    send_to_slave :zrevrank
     send_to_slave :zrevrange
+    send_to_slave :zrevrangebylex
+    send_to_slave :zrevrangebyscore
+    send_to_slave :zscan
     send_to_slave :zscore
 
     # Send everything else to master.
