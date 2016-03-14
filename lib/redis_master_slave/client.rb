@@ -153,8 +153,7 @@ module RedisMasterSlave
       case config
       when String
         # URL like redis://localhost:6379.
-        uri = URI.parse(config)
-        Redis.new(:host => uri.host, :port => uri.port)
+        Redis.new(url: config)
       when Hash
         # Hash of Redis client options (string keys ok).
         redis_config = {}
