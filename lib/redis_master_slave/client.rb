@@ -74,7 +74,11 @@ module RedisMasterSlave
       def send_to_slave(command)
         class_eval <<-EOS
           def #{command}(*args, &block)
-            next_slave.#{command}(*args, &block)
+            begin
+              next_slave.#{command}(*args, &block)
+            rescue Redis::BaseConnectionError
+              writable_master.#{command}(*args, &block)
+            end
           end
         EOS
       end
