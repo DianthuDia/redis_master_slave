@@ -50,6 +50,14 @@ module RedisMasterSlave
     attr_accessor :index
 
     #
+    # Reconnect master & slaves client.
+    #
+    def reconnect
+      @slaves.map(&:client).map(&:reconnect)
+      @master.client.reconnect
+    end
+
+    #
     # Return the next read slave to use.
     #
     # Each call returns the following slave in sequence.
