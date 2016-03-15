@@ -86,7 +86,12 @@ module RedisMasterSlave
       def send_to_master(command)
         class_eval <<-EOS
           def #{command}(*args, &block)
-            writable_master.#{command}(*args, &block)
+            begin
+              writable_master.#{command}(*args, &block)
+            rescue Redis::CommandError => e
+              raise Redis::ConnectionError, e if e.message =~ /READONLY/
+              raise e
+            end
           end
         EOS
       end
